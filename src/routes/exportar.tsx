@@ -367,3 +367,45 @@ function ExportarPage() {
     </div>
   );
 }
+
+/** Miniatura ao vivo da rota, renderizada em iframe reduzido e sem interação. */
+function Previa({ rota, nome }: { rota: string; nome: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visivel, setVisivel] = useState(false);
+  const [carregado, setCarregado] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || visivel) return;
+    const obs = new IntersectionObserver(
+      (entradas) => entradas.forEach((e) => e.isIntersecting && setVisivel(true)),
+      { rootMargin: "200px" },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [visivel]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative h-44 w-full overflow-hidden border-b border-border/60 bg-background"
+    >
+      {visivel ? (
+        <iframe
+          src={rota}
+          title={`Prévia da tela ${nome}`}
+          loading="lazy"
+          onLoad={() => setCarregado(true)}
+          tabIndex={-1}
+          className="pointer-events-none absolute left-0 top-0 origin-top-left border-0"
+          style={{ width: 1280, height: 900, transform: "scale(0.32)" }}
+        />
+      ) : null}
+      {!carregado ? (
+        <div className="absolute inset-0 grid place-items-center bg-surface/80 text-xs text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin" />
+        </div>
+      ) : null}
+    </div>
+  );
+}
