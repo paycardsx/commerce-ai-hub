@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, Download, FileCode2, Loader2 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { ArrowLeft, Download, ExternalLink, FileCode2, Loader2 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
 
 import { PageHeader } from "@/components/ui-kit";
 import { Button } from "@/components/ui/button";
@@ -318,36 +319,50 @@ function ExportarPage() {
                 {itens.map((p) => {
                   const marcada = selecionadas.includes(p.arquivo);
                   return (
-                    <button
+                    <div
                       key={p.arquivo}
-                      type="button"
-                      onClick={() => alternar(p.arquivo)}
                       className={cn(
-                        "flex w-full flex-col gap-3 rounded-xl border p-4 text-left transition-colors",
+                        "flex w-full flex-col overflow-hidden rounded-xl border transition-colors",
                         marcada
                           ? "border-primary/60 bg-primary/5"
                           : "border-border bg-surface hover:border-primary/30",
                       )}
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <p className="truncate font-medium">{p.nome}</p>
-                          <p className="truncate text-xs text-muted-foreground">{p.descricao}</p>
+                      <Previa rota={p.rota} nome={p.nome} />
+                      <button
+                        type="button"
+                        onClick={() => alternar(p.arquivo)}
+                        className="flex w-full flex-col gap-3 p-4 text-left"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="truncate font-medium">{p.nome}</p>
+                            <p className="truncate text-xs text-muted-foreground">{p.descricao}</p>
+                          </div>
+                          <Checkbox checked={marcada} className="pointer-events-none mt-1" />
                         </div>
-                        <Checkbox checked={marcada} className="pointer-events-none mt-1" />
+                        <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                          <FileCode2 className="h-3.5 w-3.5 shrink-0" />
+                          <span className="truncate">{p.arquivo.replace("/src/routes/", "")}</span>
+                        </div>
+                      </button>
+                      <div className="flex items-center justify-between gap-2 border-t border-border/60 px-4 py-2">
+                        <span className="truncate text-xs text-primary">{p.rota}</span>
+                        <Link
+                          to={p.rota}
+                          className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+                        >
+                          Abrir <ExternalLink className="h-3 w-3" />
+                        </Link>
                       </div>
-                      <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
-                        <FileCode2 className="h-3.5 w-3.5 shrink-0" />
-                        <span className="truncate">{p.arquivo.replace("/src/routes/", "")}</span>
-                      </div>
-                      <span className="text-xs text-primary">{p.rota}</span>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
             </section>
           );
         })}
+
       </div>
     </div>
   );
