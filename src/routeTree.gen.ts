@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as LojaRouteImport } from './routes/loja'
 import { Route as RecuperarRouteImport } from './routes/recuperar'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAssistenteRouteImport } from './routes/app.assistente'
@@ -44,6 +45,11 @@ const CadastroRoute = CadastroRouteImport.update({
 const EntrarRoute = EntrarRouteImport.update({
   id: '/entrar',
   path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LojaRoute = LojaRouteImport.update({
+  id: '/loja',
+  path: '/loja',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecuperarRoute = RecuperarRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/entrar': typeof EntrarRoute
+  '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
   '/app/auditoria': typeof AppAuditoriaRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
   '/entrar': typeof EntrarRoute
+  '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
   '/app/auditoria': typeof AppAuditoriaRoute
@@ -148,6 +156,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/entrar': typeof EntrarRoute
+  '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
   '/app/auditoria': typeof AppAuditoriaRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/cadastro'
     | '/entrar'
+    | '/loja'
     | '/recuperar'
     | '/app/assistente'
     | '/app/auditoria'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cadastro'
     | '/entrar'
+    | '/loja'
     | '/recuperar'
     | '/app/assistente'
     | '/app/auditoria'
@@ -203,6 +214,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/cadastro'
     | '/entrar'
+    | '/loja'
     | '/recuperar'
     | '/app/assistente'
     | '/app/auditoria'
@@ -222,6 +234,7 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   CadastroRoute: typeof CadastroRoute
   EntrarRoute: typeof EntrarRoute
+  LojaRoute: typeof LojaRoute
   RecuperarRoute: typeof RecuperarRoute
 }
 
@@ -253,6 +266,13 @@ declare module '@tanstack/react-router' {
       path: '/entrar'
       fullPath: '/entrar'
       preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loja': {
+      id: '/loja'
+      path: '/loja'
+      fullPath: '/loja'
+      preLoaderRoute: typeof LojaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recuperar': {
@@ -377,6 +397,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   CadastroRoute: CadastroRoute,
   EntrarRoute: EntrarRoute,
+  LojaRoute: LojaRoute,
   RecuperarRoute: RecuperarRoute,
 }
 export const routeTree = rootRouteImport
