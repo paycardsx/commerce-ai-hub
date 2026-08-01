@@ -72,6 +72,14 @@ export function AppShell({ children }: { children: ReactNode }) {
         <Smartphone className="h-4 w-4 shrink-0" />
         Abrir app do cliente
       </Link>
+      <Link
+        to="/exportar"
+        onClick={() => setAberto(false)}
+        className="mt-2 flex items-center gap-3 rounded-lg border border-border px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+      >
+        <Download className="h-4 w-4 shrink-0" />
+        Exportar páginas
+      </Link>
     </nav>
   );
 

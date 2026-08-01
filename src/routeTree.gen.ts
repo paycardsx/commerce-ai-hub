@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as ExportarRouteImport } from './routes/exportar'
 import { Route as LojaRouteImport } from './routes/loja'
 import { Route as RecuperarRouteImport } from './routes/recuperar'
 import { Route as AppIndexRouteImport } from './routes/app.index'
@@ -45,6 +46,11 @@ const CadastroRoute = CadastroRouteImport.update({
 const EntrarRoute = EntrarRouteImport.update({
   id: '/entrar',
   path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExportarRoute = ExportarRouteImport.update({
+  id: '/exportar',
+  path: '/exportar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LojaRoute = LojaRouteImport.update({
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/entrar': typeof EntrarRoute
+  '/exportar': typeof ExportarRoute
   '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
   '/entrar': typeof EntrarRoute
+  '/exportar': typeof ExportarRoute
   '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
@@ -156,6 +164,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/entrar': typeof EntrarRoute
+  '/exportar': typeof ExportarRoute
   '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
@@ -177,6 +186,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/cadastro'
     | '/entrar'
+    | '/exportar'
     | '/loja'
     | '/recuperar'
     | '/app/assistente'
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cadastro'
     | '/entrar'
+    | '/exportar'
     | '/loja'
     | '/recuperar'
     | '/app/assistente'
@@ -214,6 +225,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/cadastro'
     | '/entrar'
+    | '/exportar'
     | '/loja'
     | '/recuperar'
     | '/app/assistente'
@@ -234,6 +246,7 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   CadastroRoute: typeof CadastroRoute
   EntrarRoute: typeof EntrarRoute
+  ExportarRoute: typeof ExportarRoute
   LojaRoute: typeof LojaRoute
   RecuperarRoute: typeof RecuperarRoute
 }
@@ -266,6 +279,13 @@ declare module '@tanstack/react-router' {
       path: '/entrar'
       fullPath: '/entrar'
       preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exportar': {
+      id: '/exportar'
+      path: '/exportar'
+      fullPath: '/exportar'
+      preLoaderRoute: typeof ExportarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/loja': {
@@ -397,19 +417,10 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   CadastroRoute: CadastroRoute,
   EntrarRoute: EntrarRoute,
+  ExportarRoute: ExportarRoute,
   LojaRoute: LojaRoute,
   RecuperarRoute: RecuperarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
