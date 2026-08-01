@@ -5,6 +5,7 @@ import {
   Bot,
   Building2,
   ClipboardList,
+  Download,
   Menu,
   Plug,
   ScanLine,
