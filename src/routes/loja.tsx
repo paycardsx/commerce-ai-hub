@@ -36,7 +36,7 @@ export const Route = createFileRoute("/loja")({
 function Loja() {
   const { empresa, estado, catalogo, unidades, trocarEmpresa, registrarPedido, registrar } =
     useStore();
-  useBrandTheme(empresa.branding);
+  useBrandTheme(empresa.branding.corPrimaria, empresa.branding.corDestaque);
 
   const [carrinho, setCarrinho] = useState<Record<string, number>>({});
   const [categoria, setCategoria] = useState("todas");
