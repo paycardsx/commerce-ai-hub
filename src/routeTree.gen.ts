@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as ExportarRouteImport } from './routes/exportar'
-import { Route as LojaRouteImport } from './routes/loja'
 import { Route as RecuperarRouteImport } from './routes/recuperar'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppAssistenteRouteImport } from './routes/app.assistente'
@@ -45,11 +44,6 @@ const CadastroRoute = CadastroRouteImport.update({
 const ExportarRoute = ExportarRouteImport.update({
   id: '/exportar',
   path: '/exportar',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LojaRoute = LojaRouteImport.update({
-  id: '/loja',
-  path: '/loja',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecuperarRoute = RecuperarRouteImport.update({
@@ -118,7 +112,6 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/exportar': typeof ExportarRoute
-  '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
   '/app/auditoria': typeof AppAuditoriaRoute
@@ -136,7 +129,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cadastro': typeof CadastroRoute
   '/exportar': typeof ExportarRoute
-  '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
   '/app/auditoria': typeof AppAuditoriaRoute
@@ -156,7 +148,6 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/cadastro': typeof CadastroRoute
   '/exportar': typeof ExportarRoute
-  '/loja': typeof LojaRoute
   '/recuperar': typeof RecuperarRoute
   '/app/assistente': typeof AppAssistenteRoute
   '/app/auditoria': typeof AppAuditoriaRoute
@@ -177,7 +168,6 @@ export interface FileRouteTypes {
     | '/app'
     | '/cadastro'
     | '/exportar'
-    | '/loja'
     | '/recuperar'
     | '/app/assistente'
     | '/app/auditoria'
@@ -195,7 +185,6 @@ export interface FileRouteTypes {
     | '/'
     | '/cadastro'
     | '/exportar'
-    | '/loja'
     | '/recuperar'
     | '/app/assistente'
     | '/app/auditoria'
@@ -214,7 +203,6 @@ export interface FileRouteTypes {
     | '/app'
     | '/cadastro'
     | '/exportar'
-    | '/loja'
     | '/recuperar'
     | '/app/assistente'
     | '/app/auditoria'
@@ -234,7 +222,6 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   CadastroRoute: typeof CadastroRoute
   ExportarRoute: typeof ExportarRoute
-  LojaRoute: typeof LojaRoute
   RecuperarRoute: typeof RecuperarRoute
 }
 
@@ -266,13 +253,6 @@ declare module '@tanstack/react-router' {
       path: '/exportar'
       fullPath: '/exportar'
       preLoaderRoute: typeof ExportarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/loja': {
-      id: '/loja'
-      path: '/loja'
-      fullPath: '/loja'
-      preLoaderRoute: typeof LojaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recuperar': {
@@ -397,7 +377,6 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   CadastroRoute: CadastroRoute,
   ExportarRoute: ExportarRoute,
-  LojaRoute: LojaRoute,
   RecuperarRoute: RecuperarRoute,
 }
 export const routeTree = rootRouteImport

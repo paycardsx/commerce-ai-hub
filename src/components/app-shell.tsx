@@ -12,7 +12,6 @@ import {
   Settings,
   ShieldCheck,
   ShoppingBag,
-  Smartphone,
   Users,
   UsersRound,
 } from "lucide-react";
@@ -65,14 +64,6 @@ export function AppShell({ children }: { children: ReactNode }) {
       {nav.map((item) => (
         <NavLink key={item.to} item={item} onClick={() => setAberto(false)} />
       ))}
-      <Link
-        to="/loja"
-        onClick={() => setAberto(false)}
-        className="mt-3 flex items-center gap-3 rounded-lg border border-primary/30 px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
-      >
-        <Smartphone className="h-4 w-4 shrink-0" />
-        Abrir app do cliente
-      </Link>
       <Link
         to="/exportar"
         onClick={() => setAberto(false)}
