@@ -54,13 +54,6 @@ const PAGINAS: Pagina[] = [
     grupo: "Público",
   },
   {
-    rota: "/entrar",
-    nome: "Login",
-    descricao: "Acesso com contas demo",
-    arquivo: "/src/routes/entrar.tsx",
-    grupo: "Público",
-  },
-  {
     rota: "/recuperar",
     nome: "Recuperar acesso",
     descricao: "Simulação de recuperação",
