@@ -100,9 +100,6 @@ function Apresentacao() {
               Abrir demonstração <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link to="/loja">Ver app do cliente</Link>
-          </Button>
         </div>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -144,13 +144,6 @@ const PAGINAS: Pagina[] = [
     arquivo: "/src/routes/app.auditoria.tsx",
     grupo: "Administrativo",
   },
-  {
-    rota: "/loja",
-    nome: "App do cliente",
-    descricao: "Loja com a marca da empresa",
-    arquivo: "/src/routes/loja.tsx",
-    grupo: "Cliente",
-  },
 ];
 
 /** Arquivos de base incluídos quando a opção estiver ligada. */
