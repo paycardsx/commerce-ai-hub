@@ -77,7 +77,7 @@ function Apresentacao() {
         </div>
         <div className="flex shrink-0 gap-2">
           <Button asChild variant="ghost" size="sm">
-            <Link to="/entrar">Entrar</Link>
+            <Link to="/app">Entrar</Link>
           </Button>
         </div>
       </header>

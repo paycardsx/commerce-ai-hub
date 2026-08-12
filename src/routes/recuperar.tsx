@@ -38,7 +38,7 @@ function Recuperar() {
               alguns minutos.
             </p>
             <Button asChild variant="outline" className="mt-4 w-full">
-              <Link to="/entrar">Voltar para entrar</Link>
+              <Link to="/">Voltar para início</Link>
             </Button>
           </div>
         ) : (
@@ -60,7 +60,7 @@ function Recuperar() {
               Enviar instruções
             </Button>
             <Link
-              to="/entrar"
+              to="/"
               className="block text-center text-sm text-muted-foreground hover:underline"
             >
               Voltar
