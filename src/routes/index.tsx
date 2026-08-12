@@ -79,9 +79,6 @@ function Apresentacao() {
           <Button asChild variant="ghost" size="sm">
             <Link to="/entrar">Entrar</Link>
           </Button>
-          <Button asChild size="sm">
-            <Link to="/cadastro">Criar empresa</Link>
-          </Button>
         </div>
       </header>
 
