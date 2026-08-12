@@ -12,7 +12,6 @@ import {
   Settings,
   ShieldCheck,
   ShoppingBag,
-  Smartphone,
   Users,
   UsersRound,
 } from "lucide-react";
